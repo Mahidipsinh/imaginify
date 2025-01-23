@@ -17,7 +17,7 @@ import { formUrlQuery } from "@/lib/utils";
 
 import { Button } from "../ui/button";
 
-import { Search } from "./Search";
+import { Search } from "./Search"
 
 export const Collection = ({
     hasSearch = false,
