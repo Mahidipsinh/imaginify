@@ -8,6 +8,8 @@ import React from 'react'
 
 function TransformedImage({ image, type, title, isTransforming, setIsTransforming, transformationConfig, hasDownload = false }: TransformedImageProps) {
 
+    console.log("Hello")
+    console.log(image)
     const downloadHandler = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
 
