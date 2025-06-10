@@ -58,6 +58,11 @@ declare type UpdateImageParams = {
 declare type Transformations = {
     restore?: boolean;
     fillBackground?: boolean;
+    crop?: string;
+    gravity?: string;
+    format?: string;
+    quality?: string;
+    fetch_format?: string;
     remove?: {
         prompt: string;
         removeShadow?: boolean;

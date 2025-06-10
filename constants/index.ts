@@ -138,7 +138,14 @@ export const transformationTypes = {
         type: "fill",
         title: "Generative Fill",
         subTitle: "Enhance an image's dimensions using AI outpainting",
-        config: { fillBackground: true },
+        config: { 
+            fillBackground: true,
+            crop: "fill",
+            gravity: "auto",
+            format: "auto",
+            quality: "auto",
+            fetch_format: "auto"
+        },
         icon: "stars.svg",
     },
     remove: {

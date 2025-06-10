@@ -21,7 +21,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { aspectRatioOptions, creditFee, defaultValues, transformationTypes } from '@/constants'
 import { CustomField } from './CustomField'
-import { AspectRatioKey, debounce, deepMergeObjects, handleError } from '@/lib/utils'
+import { AspectRatioKey, debounce, deepMergeObjects } from '@/lib/utils'
 import { updateCredits } from '@/lib/actions/user.actions'
 import MediaUploader from './MediaUploader'
 import TransformedImage from './TransformedImage'
@@ -261,7 +261,7 @@ function TransformationForm({ action, data = null, userId, type, creditBalance, 
                         className='flex size-full flex-col'
                         render={({ field }) => (
                             <MediaUploader
-                                onValueChange={field.onChange}
+                                onChange={field.onChange}
                                 setImage={setImage}
                                 publicId={field.value}
                                 image={image}
