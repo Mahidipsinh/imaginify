@@ -9,12 +9,26 @@ import { handleError } from "../utils";
 // CREATE
 export async function createUser(user: CreateUserParams) {
     try {
+        console.log("createUser called with:", user);
         await connectToDatabase();
+        console.log("Database connected successfully");
+
+        // Validate required fields
+        if (!user.clerkId || !user.email || !user.username || !user.photo) {
+            console.error("Missing required fields:", { clerkId: !!user.clerkId, email: !!user.email, username: !!user.username, photo: !!user.photo });
+            throw new Error("Missing required fields for user creation");
+        }
 
         const newUser = await User.create(user);
+        console.log("User created in database:", newUser);
 
         return JSON.parse(JSON.stringify(newUser));
     } catch (error) {
+        console.error("Error in createUser:", error);
+        if (error instanceof Error) {
+            console.error("Error message:", error.message);
+            console.error("Error stack:", error.stack);
+        }
         handleError(error);
     }
 }

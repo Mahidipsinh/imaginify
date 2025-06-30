@@ -119,6 +119,8 @@ export const plans = [
     },
 ];
 
+export type TransformationTypeKey = keyof typeof transformationTypes;
+
 export const transformationTypes = {
     restore: {
         type: "restore",
@@ -139,12 +141,12 @@ export const transformationTypes = {
         title: "Generative Fill",
         subTitle: "Enhance an image's dimensions using AI outpainting",
         config: { 
-            fillBackground: true,
             crop: "fill",
             gravity: "auto",
-            format: "auto",
-            quality: "auto",
-            fetch_format: "auto"
+            format: "jpg",
+            fetch_format: "jpg",
+            background: "white",
+            quality: "auto"
         },
         icon: "stars.svg",
     },

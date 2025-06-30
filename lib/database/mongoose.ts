@@ -17,19 +17,31 @@ if (!cached) {
 
 
 export const connectToDatabase = async () => {
+    console.log("connectToDatabase called");
+    if (!MONGODB_URL) {
+        console.error("MONGODB_URL is not defined");
+        throw new Error("MONGODB_URL is not defined");
+    }
     if (cached.conn) {
+        console.log("Using cached database connection");
         return cached.conn;
     }
 
-    if (!MONGODB_URL) {
-        throw new Error("MONGODB_URL is not defined");
-    }
+    
 
+    console.log("Connecting to MongoDB...");
     cached.promise =
         cached.promise ||
         mongoose.connect(MONGODB_URL, { dbName: 'Imaginify', bufferCommands: false })
 
-    cached.conn = await cached.promise
+    try {
+        cached.conn = await cached.promise;
+        console.log("Database connected successfully");
+    } catch (err) {
+        console.error("Database connection failed:", err);
+        cached.conn = null;
+        throw err;
+    }
 
     return cached.conn;
 }
