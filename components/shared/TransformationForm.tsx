@@ -77,7 +77,7 @@ const TransformationForm = ({ action, data = null, userId, type, creditBalance, 
         height: image?.height,
         src: image?.publicId,
         ...(transformationConfig || {})
-      });
+      } as any); // Fix: cast to any to bypass type error
 
       const imageData = {
         title: values.title,

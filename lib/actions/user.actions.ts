@@ -14,9 +14,16 @@ export async function createUser(user: CreateUserParams) {
         console.log("Database connected successfully");
 
         // Validate required fields
-        if (!user.clerkId || !user.email || !user.username || !user.photo) {
-            console.error("Missing required fields:", { clerkId: !!user.clerkId, email: !!user.email, username: !!user.username, photo: !!user.photo });
+        if (!user.clerkId || !user.email || !user.photo) {
+            console.error("Missing required fields:", { clerkId: !!user.clerkId, email: !!user.email, photo: !!user.photo });
             throw new Error("Missing required fields for user creation");
+        }
+
+        // Check if user already exists
+        let existingUser = await User.findOne({ clerkId: user.clerkId });
+        if (existingUser) {
+            console.log("User already exists, skipping creation.");
+            return JSON.parse(JSON.stringify(existingUser));
         }
 
         const newUser = await User.create(user);
